@@ -7,6 +7,9 @@ require_relative "rails_sync/runtime/observation_store"
 require_relative "rails_sync/runtime/middleware"
 require_relative "rails_sync/merger"
 require_relative "rails_sync/builder"
+require_relative "rails_sync/configuration"
+require_relative "rails_sync/runtime/route_resolver"
+require_relative "rails_sync/railtie" if defined?(Rails::Railtie)
 
 module RailsSync
 end
