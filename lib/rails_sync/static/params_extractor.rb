@@ -71,7 +71,7 @@ module RailsSync
         value.elements.each do |el|
           nested[el.unescaped] = nil if el.is_a?(Prism::SymbolNode)
         end
-        nested
+        nested.empty? ? nil : nested
       end
     end
   end

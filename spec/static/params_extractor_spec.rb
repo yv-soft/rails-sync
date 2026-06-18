@@ -48,4 +48,18 @@ RSpec.describe RailsSync::Static::ParamsExtractor do
     RUBY
     expect(described_class.extract(source)).to eq({})
   end
+
+  it "captures only the first permit when an action has several" do
+    source = <<~RUBY
+      class WidgetsController < ApplicationController
+        def update
+          base = params.require(:widget).permit(:name)
+          extra = params.permit(:flag)
+        end
+      end
+    RUBY
+    expect(described_class.extract(source)).to eq(
+      "update" => { "widget" => { "name" => nil } }
+    )
+  end
 end
