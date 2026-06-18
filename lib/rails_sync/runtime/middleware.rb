@@ -12,8 +12,18 @@ module RailsSync
 
       def call(env)
         status, headers, response = @app.call(env)
-        capture(env, status, headers, response) if enabled?
-        [status, headers, response]
+        return [status, headers, response] unless enabled?
+
+        content_type = headers["Content-Type"] || headers["content-type"]
+        return [status, headers, response] unless content_type&.include?("application/json")
+
+        # Buffer the body so both the recorder and the downstream server can read it.
+        parts = []
+        response.each { |part| parts << part }
+        response.close if response.respond_to?(:close)
+
+        record(env, status, headers, content_type, parts)
+        [status, headers, parts]
       end
 
       private
@@ -22,15 +32,9 @@ module RailsSync
         @enabled
       end
 
-      def capture(env, status, headers, response)
-        content_type = headers["Content-Type"] || headers["content-type"]
-        return unless content_type&.include?("application/json")
-
+      def record(env, status, headers, content_type, parts)
         template = @route_resolver.call(env)
         return if template.nil?
-
-        body = +""
-        response.each { |part| body << part }
 
         @store.append(
           "verb" => env["REQUEST_METHOD"],
@@ -42,11 +46,11 @@ module RailsSync
           "response" => {
             "status" => status,
             "content_type" => content_type,
-            "body" => safe_parse(body)
+            "body" => safe_parse(parts.join)
           }
         )
       rescue StandardError
-        nil # never break a request because of capture
+        nil
       end
 
       def request_params(env)
