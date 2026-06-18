@@ -34,4 +34,11 @@ RSpec.describe RailsSync::OpenAPIDocument do
   it "load_file on a missing path returns an empty skeleton" do
     expect(described_class.load_file("/no/such/file.yml").paths).to eq({})
   end
+
+  it "deep-sorts nested hashes at every level" do
+    doc = described_class.new({ "paths" => { "/b" => { "post" => {}, "get" => {} }, "/a" => {} } })
+    sorted = doc.to_h
+    expect(sorted["paths"].keys).to eq(["/a", "/b"])
+    expect(sorted["paths"]["/b"].keys).to eq(["get", "post"])
+  end
 end

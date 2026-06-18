@@ -5,11 +5,11 @@ module RailsSync
     def self.load_file(path)
       return new unless File.exist?(path)
 
-      new(YAML.safe_load_file(path) || nil)
+      new(YAML.safe_load_file(path))
     end
 
     def initialize(hash = nil)
-      @doc = hash || skeleton
+      @doc = deep_dup(hash) || skeleton
       @doc["paths"] ||= {}
     end
 
