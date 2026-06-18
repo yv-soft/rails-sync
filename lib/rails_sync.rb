@@ -6,6 +6,7 @@ require_relative "rails_sync/static/params_extractor"
 require_relative "rails_sync/runtime/observation_store"
 require_relative "rails_sync/runtime/middleware"
 require_relative "rails_sync/merger"
+require_relative "rails_sync/builder"
 
 module RailsSync
 end
