@@ -1,4 +1,9 @@
 # Claude Code — keep AI tooling out of the repo
 .claude/
 CLAUDE.local.md
+docs/superpowers/*
 docs/superpowers
+
+# Ruby / Bundler (library gem: do not commit the lockfile)
+/Gemfile.lock
+/.bundle/
