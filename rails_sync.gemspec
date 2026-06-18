@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
   spec.name = "rails_sync"
   spec.version = RailsSync::VERSION
   spec.authors = ["dani"]
-  spec.email = ["dani@dutyventures.com"]
+  spec.email = ["danielsilas23@yahoo.com"]
 
   spec.summary = "Generate and maintain an OpenAPI 3.1 contract for a Rails JSON API."
   spec.description = <<~DESC.strip
@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
     observation of real responses via a Rack middleware. The result is idempotent,
     preserves hand-written documentation, and is serializer-agnostic.
   DESC
-  spec.homepage = "https://github.com/silasdani/rails-sync"
+  spec.homepage = "https://github.com/yv-soft/rails-sync"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2.0"
 
