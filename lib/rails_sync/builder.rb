@@ -1,3 +1,5 @@
+require "fileutils"
+
 module RailsSync
   class Builder
     def initialize(route_set:, controller_sources: {}, observations: [])
@@ -81,6 +83,7 @@ module RailsSync
     fresh = Builder.new(route_set: route_set, controller_sources: controller_sources, observations: observations).build_fresh
     existing = File.exist?(output_path) ? OpenAPIDocument.load_file(output_path) : nil
     merged = Merger.merge(existing, fresh, prune: prune)
+    FileUtils.mkdir_p(File.dirname(File.expand_path(output_path)))
     merged.write(output_path)
     merged
   end
