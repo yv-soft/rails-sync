@@ -1,6 +1,6 @@
 require "tmpdir"
 
-RSpec.describe RailsSync::Runtime::ObservationStore do
+RSpec.describe RailsContractSync::Runtime::ObservationStore do
   it "appends and reads back JSONL, creating parent dirs" do
     Dir.mktmpdir do |dir|
       store = described_class.new(File.join(dir, "nested", "obs.jsonl"))

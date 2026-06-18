@@ -1,4 +1,4 @@
-module RailsSync
+module RailsContractSync
   module Static
     class RouteExtractor
       VERBS = %w[GET POST PUT PATCH DELETE].freeze

@@ -1,6 +1,6 @@
 require "yaml"
 
-module RailsSync
+module RailsContractSync
   class OpenAPIDocument
     def self.load_file(path)
       return new unless File.exist?(path)

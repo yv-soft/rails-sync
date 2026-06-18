@@ -1,6 +1,6 @@
 require "action_dispatch"
 
-RSpec.describe RailsSync::Static::RouteExtractor do
+RSpec.describe RailsContractSync::Static::RouteExtractor do
   def route_set
     set = ActionDispatch::Routing::RouteSet.new
     set.draw do

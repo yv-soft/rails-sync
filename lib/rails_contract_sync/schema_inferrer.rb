@@ -1,4 +1,4 @@
-module RailsSync
+module RailsContractSync
   module SchemaInferrer
     module_function
 

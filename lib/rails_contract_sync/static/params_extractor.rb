@@ -1,6 +1,6 @@
 require "prism"
 
-module RailsSync
+module RailsContractSync
   module Static
     module ParamsExtractor
       module_function

@@ -1,6 +1,6 @@
 require "rails"
 require "action_controller/railtie"
-require "rails_sync"
+require "rails_contract_sync"
 
 module Dummy
   class Application < Rails::Application

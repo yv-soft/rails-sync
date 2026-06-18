@@ -1,6 +1,6 @@
-RSpec.describe RailsSync::Merger do
+RSpec.describe RailsContractSync::Merger do
   def doc(paths)
-    RailsSync::OpenAPIDocument.new({ "openapi" => "3.1.0", "info" => { "title" => "API", "version" => "1.0.0" }, "paths" => paths })
+    RailsContractSync::OpenAPIDocument.new({ "openapi" => "3.1.0", "info" => { "title" => "API", "version" => "1.0.0" }, "paths" => paths })
   end
 
   it "preserves human prose on operations that still exist" do
@@ -15,7 +15,7 @@ RSpec.describe RailsSync::Merger do
     existing = doc("/legacy" => { "get" => { "responses" => {} } })
     fresh = doc("/users" => { "get" => { "responses" => {} } })
     merged = described_class.merge(existing, fresh).to_h
-    expect(merged["paths"]["/legacy"]["get"]["x-rails-sync-stale"]).to be(true)
+    expect(merged["paths"]["/legacy"]["get"]["x-rails-contract-sync-stale"]).to be(true)
     expect(merged["paths"]).to have_key("/users")
   end
 
@@ -29,7 +29,7 @@ RSpec.describe RailsSync::Merger do
   it "keeps the existing info block verbatim" do
     existing = doc("/users" => { "get" => { "responses" => {} } })
     existing_h = existing.to_h.merge("info" => { "title" => "My Real API", "version" => "2.3.0" })
-    merged = described_class.merge(RailsSync::OpenAPIDocument.new(existing_h), doc({})).to_h
+    merged = described_class.merge(RailsContractSync::OpenAPIDocument.new(existing_h), doc({})).to_h
     expect(merged["info"]).to eq("title" => "My Real API", "version" => "2.3.0")
   end
 

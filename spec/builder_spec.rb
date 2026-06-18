@@ -1,7 +1,7 @@
 require "action_dispatch"
 require "tmpdir"
 
-RSpec.describe RailsSync::Builder do
+RSpec.describe RailsContractSync::Builder do
   def route_set
     set = ActionDispatch::Routing::RouteSet.new
     set.draw { post "/users", to: "users#create" }
@@ -40,13 +40,13 @@ RSpec.describe RailsSync::Builder do
     expect(body_schema["properties"]["user"]["properties"]["name"]).to eq("type" => "string")
   end
 
-  it "RailsSync.build writes and merges into the output file" do
+  it "RailsContractSync.build writes and merges into the output file" do
     Dir.mktmpdir do |dir|
       out = File.join(dir, "openapi.yml")
-      store = RailsSync::Runtime::ObservationStore.new(File.join(dir, "obs.jsonl"))
+      store = RailsContractSync::Runtime::ObservationStore.new(File.join(dir, "obs.jsonl"))
       observations.each { |o| store.append(o) }
-      RailsSync.build(route_set: route_set, controller_sources: controller_sources, observation_store: store, output_path: out)
-      reloaded = RailsSync::OpenAPIDocument.load_file(out)
+      RailsContractSync.build(route_set: route_set, controller_sources: controller_sources, observation_store: store, output_path: out)
+      reloaded = RailsContractSync::OpenAPIDocument.load_file(out)
       expect(reloaded.operation("/users", "post")).not_to be_nil
     end
   end

@@ -1,6 +1,6 @@
 require "fileutils"
 
-module RailsSync
+module RailsContractSync
   class Builder
     def initialize(route_set:, controller_sources: {}, observations: [])
       @route_set = route_set

@@ -1,7 +1,7 @@
 require "json"
 require "fileutils"
 
-module RailsSync
+module RailsContractSync
   module Runtime
     class ObservationStore
       def initialize(path)

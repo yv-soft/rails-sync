@@ -1,6 +1,6 @@
 require "json"
 
-module RailsSync
+module RailsContractSync
   module Runtime
     class Middleware
       def initialize(app, store:, route_resolver:, enabled: true)

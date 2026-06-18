@@ -1,14 +1,14 @@
-module RailsSync
+module RailsContractSync
   class Configuration
     attr_accessor :output_path, :observations_path
 
     def initialize
       @output_path = "openapi.yml"
-      @observations_path = "tmp/rails_sync/observations.jsonl"
+      @observations_path = "tmp/rails_contract_sync/observations.jsonl"
     end
 
     def enabled?
-      v = ENV["RAILS_SYNC"]
+      v = ENV["RAILS_CONTRACT_SYNC"]
       !v.nil? && !v.empty? && v != "0" && v.downcase != "false"
     end
 

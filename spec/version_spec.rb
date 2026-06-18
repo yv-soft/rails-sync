@@ -1,5 +1,5 @@
-RSpec.describe RailsSync do
+RSpec.describe RailsContractSync do
   it "has a semantic version string" do
-    expect(RailsSync::VERSION).to match(/\A\d+\.\d+\.\d+\z/)
+    expect(RailsContractSync::VERSION).to match(/\A\d+\.\d+\.\d+\z/)
   end
 end

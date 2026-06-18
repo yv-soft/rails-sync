@@ -1,4 +1,4 @@
-module RailsSync
+module RailsContractSync
   module Merger
     HUMAN_OP_KEYS = %w[summary description tags].freeze
 
@@ -19,7 +19,7 @@ module RailsSync
             HUMAN_OP_KEYS.each { |k| target[k] = existing_op[k] if existing_op.key?(k) }
             preserve_descriptions(existing_op["responses"], target["responses"])
           elsif !prune
-            (result_paths[path] ||= {})[verb] = existing_op.merge("x-rails-sync-stale" => true)
+            (result_paths[path] ||= {})[verb] = existing_op.merge("x-rails-contract-sync-stale" => true)
           end
         end
       end

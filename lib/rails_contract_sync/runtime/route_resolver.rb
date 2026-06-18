@@ -1,4 +1,4 @@
-module RailsSync
+module RailsContractSync
   module Runtime
     class RouteResolver
       def initialize(route_set)

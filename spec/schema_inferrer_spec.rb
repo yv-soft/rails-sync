@@ -1,4 +1,4 @@
-RSpec.describe RailsSync::SchemaInferrer do
+RSpec.describe RailsContractSync::SchemaInferrer do
   describe ".infer" do
     it "types scalars" do
       expect(described_class.infer(1)).to eq("type" => "integer")

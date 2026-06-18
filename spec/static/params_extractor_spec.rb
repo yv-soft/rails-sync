@@ -1,4 +1,4 @@
-RSpec.describe RailsSync::Static::ParamsExtractor do
+RSpec.describe RailsContractSync::Static::ParamsExtractor do
   it "reads require + scalar permits, wrapping under the required key" do
     source = <<~RUBY
       class UsersController < ApplicationController

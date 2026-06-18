@@ -1,6 +1,6 @@
 require "tmpdir"
 
-RSpec.describe RailsSync::OpenAPIDocument do
+RSpec.describe RailsContractSync::OpenAPIDocument do
   it "seeds an OpenAPI 3.1 skeleton" do
     doc = described_class.new.to_h
     expect(doc["openapi"]).to eq("3.1.0")

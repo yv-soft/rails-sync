@@ -1,14 +1,14 @@
-require_relative "lib/rails_sync/version"
+require_relative "lib/rails_contract_sync/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "rails_sync"
-  spec.version = RailsSync::VERSION
+  spec.name = "rails_contract_sync"
+  spec.version = RailsContractSync::VERSION
   spec.authors = ["dani"]
   spec.email = ["danielsilas23@yahoo.com"]
 
   spec.summary = "Generate and maintain an OpenAPI 3.1 contract for a Rails JSON API."
   spec.description = <<~DESC.strip
-    RailsSync produces and maintains a single committed openapi.yml for a Rails
+    RailsContractSync produces and maintains a single committed openapi.yml for a Rails
     JSON API by combining static route/strong-params introspection with runtime
     observation of real responses via a Rack middleware. The result is idempotent,
     preserves hand-written documentation, and is serializer-agnostic.
