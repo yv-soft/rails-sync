@@ -58,10 +58,7 @@ module RailsSync
         end
       end
       required = ((a["required"] || []) & (b["required"] || [])).sort
-      out = {}
-      out["properties"] = merged unless merged.empty?
-      out["required"] = required unless required.empty?
-      out
+      { "properties" => merged, "required" => required }
     end
   end
 end
